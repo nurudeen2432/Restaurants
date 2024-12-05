@@ -9,6 +9,7 @@ using Restaurants.APITests;
 using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;
+using Restaurants.Infrastructure.Seeders;
 using System.Net;
 using System.Net.Http.Json;
 using Xunit;
@@ -23,7 +24,11 @@ public class RestaurantsControllerTests : IClassFixture<WebApplicationFactory<Pr
 {
     private readonly WebApplicationFactory<Program> _factory;
 
-    private readonly Mock<IRestaurantsRepository> _restaurantsRepositoryMock = new();   //assign to a new object of the same type
+    private readonly Mock<IRestaurantsRepository> _restaurantsRepositoryMock = new(); 
+    
+    //assign to a new object of the same type
+
+    private readonly Mock<IRestaurantSeeder> _restaurantsSeederMock = new();
 
 
 
@@ -44,6 +49,9 @@ public class RestaurantsControllerTests : IClassFixture<WebApplicationFactory<Pr
 
                 //This is how we can replace the concrete restaurant repository that is registered within our API
                 services.Replace(ServiceDescriptor.Scoped(typeof(IRestaurantsRepository), _ => _restaurantsRepositoryMock.Object));
+
+
+                services.Replace(ServiceDescriptor.Scoped(typeof(IRestaurantSeeder), _ => _restaurantsSeederMock.Object));
             });
         });
     }
