@@ -1,0 +1,133 @@
+@host = http://localhost
+@port = 5240
+@token = CfDJ8IILk4pmEGhCm2mYZhM1XZcK-kt55j225-2NQWYIzmCXyy7u8x7gOs4D9OKX9awqZJUGXuItK4dwkTqc9eyiWewIg3FG0OD5NpvRBee9lgxpx1DLL8JnGluvN6s5uhBZ7wmGzK-P19mIBBFQ8cu7I4xp4Jvwk68FoMG-zPckRE5ZEX1rw2-vXxah2qDDvQvLN4mfmuEbhChjvGcmfPsHREa71pOREZwIxvvwQ6Sc7yifeajHT6Jj96zJCX-bllhp7SYWsYBAeTRBL2CcgcQ6vR4APzsm9JHmsfNoP7Z4H2DxDM3KRVnrjDJkdQcurRLHKqk56hPFQ3YW2EjgxteauGVQp3yywv7Kb5BGP0XsEG9snM29K5YfqR9xM4l7Lw22FiWOUwwbnWQZcmbcYXAd2eBDLHsCnTYtK6DeHVJ6xGaCvasM1TRQAnF_hpEygLIFjW1TKV8oc9KrBdhHG-44tELfCTFEYBIIZ6zlPRd0jCAOVbgO9Ypc6XG0zxirLatGCMzFwv1b-MuRepDbtrgMIXNstcvCiVse-kmI9Aox8Zld0wAMNKT4v9-qY9ZreLuI0J4_y5d6Pr6cuuMe9s3szTUIuV-V_oYdBDFaDjqX-VatXqY_Ldghri19lcdCp9rbPMPe0jo5NRTFo2aQVrvNyemXFIq-ciSVnu_TDLQY4LYSXuN1yi4W85tE9JrRhxOpU4EiElV9W9dvnfZvIpaHHn4TLzGLNMhWXiHVe19Mfqkuj1ej6Pr15SYgDhVmXkDPbcTS-mf2NAhVP-0ofLwjRmUAyzEYgop5HGXM-FfBO7wm
+@Restaurants.API_HostAddress = https://localhost:7066
+
+
+
+
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants?searchPhrase=Random&PageSize=5&PageNumber=5&sortBy=Category&sortDirection=Descending
+Authorization: Bearer {{token}}
+ 
+
+###
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants/05d23184-f7cb-4198-bfe0-08dd0deb9f41
+Authorization: Bearer {{token}}
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "Name":"Owner 2 second restaurants For Biggs",
+  "Description":"Tantalizing Dish",
+  "Category":"Italian",
+  "HasDelivery":true,
+  "ContactEmail":"mrbiggs@info.com",
+  "ContactNumber":"555-1234",
+  "City":"Metropolis",
+  "Street":"456 Gourmet Avenue",
+  "PostalCode":"89-073"
+
+}
+
+
+###
+
+GET 	https://localhost:7066/api/restaurants/1fdd3a69-6836-4617-6000-08dd0ca7559d
+
+
+###
+
+DELETE {{Restaurants.API_HostAddress}}/api/restaurants/39d311e2-6b5c-4352-8c41-08dd02a5d8ac
+Authorization: Bearer {{token}}
+
+
+###
+PATCH {{Restaurants.API_HostAddress}}/api/restaurants/39d311e2-6b5c-4352-8c41-08dd02a5d8ac
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "Name":"New Update restaurant",
+  "Description":"Rebrand Big bite to add snack and pastries",
+  "Has Delivery": false
+}
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurant/05d23184-f7cb-4198-bfe0-08dd0deb9f41/dishes
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "Name":"Spaghetti Bolognese",
+  "Description":"Classic Italian Pasta dish with rich meat sauce",
+  "Price": 78,
+  "KiloCalories": 125
+}
+
+###
+
+GET {{Restaurants.API_HostAddress}}/api/restaurant/05d23184-f7cb-4198-bfe0-08dd0deb9f41/dishes/4
+
+###
+
+GET {{Restaurants.API_HostAddress}}/api/restaurant/05d23184-f7cb-4198-bfe0-08dd0deb9f41/dishes
+Authorization: Bearer {{token}}
+
+###
+
+@restaurantId=string
+DELETE {{Restaurants.API_HostAddress}}/api/restaurant/05d23184-f7cb-4198-bfe0-08dd0deb9f41/dishes
+
+###
+
+GET https://localhost:7066/api/restaurant/05d23184-f7cb-4198-bfe0-08dd0deb9f41/dishes/6
+
+  
+###
+POST {{Restaurants.API_HostAddress}}/api/identity/register
+Content-Type: application/json
+
+{
+  "email":"owner2@test.com",
+  "password":"Password123$"
+}
+
+
+###
+POST {{Restaurants.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+
+{
+  "email":"owner2@test.com",
+  "password":"Password123$"
+}
+  
+###
+
+PATCH {{Restaurants.API_HostAddress}}/api/identity/user
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "Nationality":"French",
+  "DateOfBirth":"2010-01-01"
+}
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/identity/userRole
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "UserEmail":"owner2@test.com",
+  "RoleName":"Owner"
+}
+
+###
