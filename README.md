@@ -1,1 +1,2 @@
 # Restaurants
+New Restaurant API
